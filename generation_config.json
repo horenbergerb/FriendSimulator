@@ -1,0 +1,11 @@
+{
+    "model_type": "gpt2",
+    "model_name_or_path": "DiscordBlocks2/",
+    "temperature": 4e-1,
+    "repetition_penalty": 12e-1,
+    "k": 40,
+    "length": 256,
+    "seed": 209392,
+    "num_return_sequences": 3,
+    "no_cuda": 1
+}
