@@ -81,6 +81,14 @@ Your GPU can't handle your neural net. You can try using a smaller GPT2, lowerin
 
 ### The training suddenly terminates without any information
 
-I'm pretty sure you ran out of RAM. Try everything from the previous question. Barring that, get more RAM.
+I'm pretty sure you ran out of RAM. Try everything from the previous question. Barring that, get more RAM. You can also train this using Google's Colab. I was able to train gpt2-large using a Pro account.
+
+### The output is not convincing
+
+Try tweaking the parameters in *generation_config.json*. Also note that I only got convincing results when using gpt2-large.
+
+### The code is poorly written
+
+Yeah
 
 [1]:https://github.com/Tyrrrz/DiscordChatExporter
