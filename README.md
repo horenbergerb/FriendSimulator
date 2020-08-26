@@ -16,7 +16,7 @@ We'll talk about the steps in detail in the following sections.
 
 Although the procedure described would use Discord DMs, any properly-formatted chat logs can be used as training data.
 
-DISCLAIMER: scraping Discord logs is against the Discord terms of service. Thus, this code base is a hypothetical (and satirical) project. Additionally, using conversation data to train a neural net is morally grey. Talk with your friends about this hypothetical project before deciding whether you would hypothetically use this code.
+DISCLAIMER: Automated user accounts are against the Discord terms of service. Thus, using this code base with the linked Discord scraper is a hypothetical (and satirical) project. Additionally, using conversation data to train a neural net is morally grey. Talk with your friends about this hypothetical project before deciding whether you would hypothetically use this code.
 
 ## General Preparation
 
