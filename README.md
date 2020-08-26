@@ -2,7 +2,7 @@
 
 Have your friends ever been offline when you really wanted to chat? Have you ever felt irresponsible for not having a backup of your friends? Do you believe that piracy isn't theft?
 
-Well pirate a copy of your friend's personality with DiscordFriendSimulator!
+Well pirate a copy of your friend's personality with FriendSimulator!
 
 This project adapts example code from the Huggingface/transformers repo to fine-tune GPT2 on DMs from your friends. Then, you can either generate whole conversations from a prompt or simulate actual conversations. Do you ever worry you're annoying your friends? Well play as your friend and decide for yourself!
 
@@ -38,7 +38,7 @@ Here is the currently implemented procedure:
 
 1) Use Discord Chat Exporter to scrape DMs. Make sure to scrape them into a CSV file.
 2) Open *dm_parser.py* and set the *input_filename* variable to the CSV's filename. Take note of the "output_filename"
-3) Run *dm_parser.py* and verify the outputs have been produced. The outputs are two txt files which GPT2 will train and test on. The train/test ratio for the logs is 95/5 because I'm a bad scientist.
+3) Run *dm_parser.py* and verify the outputs have been produced. The outputs are three txt files. GPT2 will train and test on two of these. The third file holds usernames and is also needed for the training program. The train/test ratio for the logs is 95/5 because I'm a bad scientist.
 
 Remember that scraping Discord DMs is against the Discord terms of service, so this is a hypothetical procedure.
 
@@ -48,6 +48,7 @@ To train a new GPT model, you will first want to open the *training_config.json*
 
 * *model_type* is the desired GPT2 model. The sizes are *gpt2*, *gpt2-medium*, *gpt2-large*, *gpt2-xl*. Some of these may be too big for your computer to train.
 * *model_name_or_path* should be the same as *model_type*
+* *usernames_file* is generated from the parser and contains a list of usernames in the chat
 * *output_dir* is the folder where the trained neural net will be stored. You will reference this folder later when using the net to simulate conversation.
 * *train_data_file* and *test_data_file* should be the files produced by *dm_parser.py*
 
@@ -69,5 +70,17 @@ Before you run these, ensure the *generation_config.json* is properly configured
 you do not need to change the *model_type* parameter, regardless of which GPT2 size you use.
 
 I recommend researching and experimenting with *temperature*, *repetition_penalty* and *k*. These parameters can affect the quality of the outputs. The defaults are what I found to be effective.
+
+NOTE! It's better to turn up *num_return_sequences* and turn down *length* when running *simulate_conversation.py*. This helps with speed and gives more possible AI responses.
+
+# Common Issues
+
+### The training terminates with an error, "CUDA out of memory"
+
+Your GPU can't handle your neural net. You can try using a smaller GPT2, lowering batch sizes, increasing gradient accumulation, or activating no_cuda in the config and training on CPU
+
+### The training suddenly terminates without any information
+
+I'm pretty sure you ran out of RAM. Try everything from the previous question. Barring that, get more RAM.
 
 [1]:https://github.com/Tyrrrz/DiscordChatExporter

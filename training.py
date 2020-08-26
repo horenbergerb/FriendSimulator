@@ -26,6 +26,7 @@ import os
 from dataclasses import dataclass, field
 from typing import Optional
 
+import shutil
 import json
 
 from transformers import (
@@ -93,6 +94,10 @@ class DataTrainingArguments:
         default=None,
         metadata={"help": "An optional input evaluation data file to evaluate the perplexity on (a text file)."},
     )
+    usernames_file: Optional[str] = field(
+        default=None,
+        metatdata={"help": "Holds all usernames in training data for simulating conversations later"},
+        )
     line_by_line: bool = field(
         default=False,
         metadata={"help": "Whether distinct lines of text in the dataset are to be handled as distinct sequences."},
@@ -251,6 +256,9 @@ def main():
         )
         trainer.train(model_path=model_path)
         trainer.save_model()
+        #copying usernames for related training data into a file for use in conversation simulation
+        shutil.copyfile(data_args.usernames_file, model_args.model_name_or_path+"Usernames.txt")
+        
         # For convenience, we also re-save the tokenizer to the same directory,
         # so that you can share your model easily on huggingface.co/models =)
         if trainer.is_world_master():

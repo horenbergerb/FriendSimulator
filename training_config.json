@@ -1,9 +1,10 @@
 {
     "model_type": "gpt2",
     "model_name_or_path": "gpt2",
-    "output_dir": "Kerp",
+    "output_dir": "Steve",
     "train_data_file": "DMsParsedTrain.txt",
     "eval_data_file": "DMsParsedTest.txt",
+    "usernames_file": "DMsParsedUsernames.txt"
     "block_size": 256,
     "no_cuda": 1,
     "do_eval": 0,
