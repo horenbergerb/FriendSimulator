@@ -46,7 +46,7 @@ Remember that scraping Discord DMs is against the Discord terms of service, so t
 
 ## Training a Model
 
-To train a new GPT model, you will first want to open the *training_config.json* file. Here are the most important parameters:
+To fine-tune a GPT2 model, you will first want to open the *training_config.json* file. Here are the most important parameters:
 
 * *model_type* is the desired GPT2 model. The sizes are *gpt2*, *gpt2-medium*, *gpt2-large*, *gpt2-xl*. Some of these may be too big for your computer to train.
 * *model_name_or_path* should be the same as *model_type*
