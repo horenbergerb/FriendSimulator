@@ -24,9 +24,9 @@ I recommend you create a Python 3.x environment for this procedure. You will wan
 
 You will also want to install the Huggingface/transformers package from the source (i.e. using the latest github commit). This can be done with the commands:
 
-''git clone https://github.com/huggingface/transformers.git
+'''git clone https://github.com/huggingface/transformers.git
 cd transformers
-pip install -e .''
+pip install -e .'''
 
 After this, you should be just about ready!
 
