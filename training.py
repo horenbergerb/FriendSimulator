@@ -96,7 +96,7 @@ class DataTrainingArguments:
     )
     usernames_file: Optional[str] = field(
         default=None,
-        metatdata={"help": "Holds all usernames in training data for simulating conversations later"},
+        metadata={"help": "Holds all usernames in training data for simulating conversations later"},
         )
     line_by_line: bool = field(
         default=False,

@@ -1,11 +1,11 @@
 {
     "model_type": "gpt2",
     "model_name_or_path": "Steve/",
-    "temperature": 4e-1,
+    "temperature": 3e-1,
     "repetition_penalty": 12e-1,
     "k": 40,
-    "length": 64,
+    "length": 128,
     "seed": 209392,
-    "num_return_sequences": 3,
+    "num_return_sequences": 4,
     "no_cuda": 1
 }

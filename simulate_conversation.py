@@ -256,7 +256,7 @@ def main():
     while running:
         #getting user input
         print(info_text)
-        print(prompt_text.r_strip("\n")
+        print(prompt_text.rstrip("\n"))
         cur_input = input(player + ": ")
 
         #activate debug mode if necessary
@@ -372,6 +372,8 @@ def main():
             prompt_text += generated_sequences[choice]
             #add a newline for the next stuff being appended
             prompt_text += "\n"
+        else:
+            prompt_text = prompt_text[:-1*len(player + ": " + cur_input + "\n")]
             
     return 0
 
