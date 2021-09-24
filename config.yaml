@@ -1,0 +1,21 @@
+training:
+    model_name: 'gpt2-large'
+    train_dir: 'DMsParsedTrain.txt'
+    eval_dir: 'DMsParsedTest.txt'
+    usernames_dir: 'DMsParsedUsernames.txt'
+    block_size: 256
+    plm_probability: 0.166
+    output_dir: 'TrainedModel'
+    overwrite_output_dir: False
+    per_device_train_batch_size: 1
+    per_device_eval_batch_size: 1
+    gradient_accumulation_steps: 16
+    no_cuda: False
+    num_train_epochs: 3.0
+
+generation:
+    model_name: 'TrainedModel'
+    seed: 42
+    input_string: '<Captain of the Dishwasher> gpt2 is honestly starting to take up too much of my life'
+    bad_words:
+        - <kerp>
