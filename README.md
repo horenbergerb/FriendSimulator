@@ -20,9 +20,9 @@ DISCLAIMER: Automated user accounts are against the Discord terms of service. Th
 
 ## General Preparation
 
-I recommend you create a Python 3.x environment for this procedure. You will want to "pip install torch" to get the PyTorch package.
+I recommend you create a Python 3.x environment for this procedure. You can install the requirements using `pip install -r requirements.txt`
 
-You will also want to install the Huggingface/transformers package from the source (i.e. using the latest github commit). This can be done with the commands:
+You may need to install the Huggingface/transformers package from the source (i.e. using the latest github commit). This can be done with the commands:
 
 ```git clone https://github.com/huggingface/transformers.git
 cd transformers
@@ -61,7 +61,7 @@ Once you've verified your parameters are acceptable, simply run the *train.py* f
 
 The two simulation files are *generate_from_prompt.py* and *simulate_conversation.py*.
 
-Before you run these, ensure the generation section of *config.yaml* is properly configured. Particularly, *model_name* must be the folder of the desired NN. For example, if the folder is "TrainedModel" and it's located in the same location as *generate_from_prompt.py* and *simulate_conversation.py*, you would enter *TrainedModel/*
+Before you run these, ensure the generation section of *config.yaml* is properly configured. Particularly, *model_name* must be the folder of the desired NN. For example, if the folder is "TrainedModel" and it's located in the same location as *generate_from_prompt.py* and *simulate_conversation.py*, you would enter *TrainedModel*
 
 I recommend researching and experimenting with *temperature*, *repetition_penalty* and *k*. These parameters can affect the quality of the outputs. The defaults are what I found to be effective.
 
