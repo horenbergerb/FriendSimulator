@@ -14,24 +14,24 @@ import csv
 import torch
 
 
-def training_example(model_name='gpt2-large',
-                     train_dir='DMsParsedTrain.txt',
-                     eval_dir='DMsParsedTest.txt',
-                     usernames_dir='DMsParsedUsernames.txt',
-                     block_size=256,
-                     plm_probability=1/6,
-                     output_dir='TrainedModel',
-                     overwrite_output_dir=False,
-                     per_device_train_batch_size=1,
-                     per_device_eval_batch_size=1,
-                     gradient_accumulation_steps=16,
-                     no_cuda=False,
-                     num_train_epochs=3.0):
+def fine_tune_gpt2(model_name='gpt2-large',
+                   train_dir='DMsParsedTrain.txt',
+                   eval_dir='DMsParsedTest.txt',
+                   usernames_dir='DMsParsedUsernames.txt',
+                   block_size=256,
+                   plm_probability=1/6,
+                   output_dir='TrainedModel',
+                   overwrite_output_dir=False,
+                   per_device_train_batch_size=1,
+                   per_device_eval_batch_size=1,
+                   gradient_accumulation_steps=16,
+                   no_cuda=False,
+                   num_train_epochs=3.0):
 
     torch.cuda.empty_cache()
-    ###########################
-    #LOAD MODEL AND TOKENIZER#
-    ###########################
+    ############################
+    # LOAD MODEL AND TOKENIZER #
+    ############################
     pt_model = GPT2LMHeadModel.from_pretrained(model_name)
     tokenizer = AutoTokenizer.from_pretrained(model_name, max_length=block_size, padding=True, truncate=True)
     special_tokens = []
@@ -45,9 +45,9 @@ def training_example(model_name='gpt2-large',
 
     block_size = min(block_size, tokenizer.model_max_length)
 
-    #############################
-    #LOAD TRAINING AND EVAL DATA#
-    #############################
+    ###############################
+    # LOAD TRAINING AND EVAL DATA #
+    ###############################
     train_data = TextDataset(tokenizer=tokenizer, file_path=train_dir, block_size=block_size, overwrite_cache=False)
     eval_data = TextDataset(tokenizer=tokenizer, file_path=eval_dir, block_size=block_size, overwrite_cache=False)
     # a collator turns a list of dataset elements into a batch
@@ -63,9 +63,9 @@ def training_example(model_name='gpt2-large',
         overwrite_output_dir=overwrite_output_dir
     )
 
-    ###########################
-    #PREPARE TRAINER AND TRAIN#
-    ###########################
+    #############################
+    # PREPARE TRAINER AND TRAIN #
+    #############################
     trainer = Trainer(
         model=pt_model,
         args=training_args,
@@ -102,4 +102,4 @@ def training_example(model_name='gpt2-large',
 
 if __name__ == '__main__':
     config = yaml.safe_load(open('config.yaml'))['training']
-    training_example(**config)
+    fine_tune_gpt2(**config)

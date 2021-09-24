@@ -16,7 +16,7 @@ We'll talk about the steps in detail in the following sections.
 
 Although the procedure described would use Discord DMs, any properly-formatted chat logs can be used as training data.
 
-DISCLAIMER: Automated user accounts are against the Discord terms of service. Thus, using this code base with the linked Discord scraper is a hypothetical (and satirical) project. Additionally, using conversation data to train a neural net is morally grey. Talk with your friends about this hypothetical project before deciding whether you would hypothetically use this code.
+DISCLAIMER: Automated user accounts are against the Discord terms of service. Thus, using this code base with the linked Discord scraper is a hypothetical (and satirical) project. Additionally, using conversation data to train a neural net is morally grey. Don't go around pirating personalities. That's dystopian cyberpunk stuff.
 
 ## General Preparation
 
@@ -38,25 +38,20 @@ After this, you should be just about ready!
 Here is the currently implemented procedure:
 
 1) Use Discord Chat Exporter to scrape DMs. Make sure to scrape them into a CSV file.
-2) Open *dm_parser.py* and set the *input_filename* variable to the CSV's filename. Take note of the "output_filename"
-3) Run *dm_parser.py* and verify the outputs have been produced. The outputs are three txt files. GPT2 will train and test on two of these. The third file holds usernames and is also needed for the training program. The train/test ratio for the logs is 95/5 because I'm a bad scientist.
-
-Remember that scraping Discord DMs is against the Discord terms of service, so this is a hypothetical procedure.
+2) Run `dm_parser.py filename` where 'filename' is the CSV's filename.
+3) The outputs are three txt files. Update the training section of the config.yaml file to point to these. The train/test ratio used by dm_parser is 95/5 because I'm a bad scientist.
 
 ## Training a Model
 
-To fine-tune a GPT2 model, you will first want to open the *training_config.json* file. Here are the most important parameters:
+To fine-tune a GPT2 model, you will first want to open the *config.yaml* file. Here are the most important parameters:
 
-* *model_type* is the desired GPT2 model. The sizes are *gpt2*, *gpt2-medium*, *gpt2-large*, *gpt2-xl*. Some of these may be too big for your computer to train.
-* *model_name_or_path* should be the same as *model_type*
-* *usernames_file* is generated from the parser and contains a list of usernames in the chat
-* *output_dir* is the folder where the trained neural net will be stored. You will reference this folder later when using the net to simulate conversation.
-* *train_data_file* and *test_data_file* should be the files produced by *dm_parser.py*
+* *train_dir*, *eval_dir*, *usernames_dir* will all need to be updated to match the outputs from dm_parser.py
+* *model_name* is the desired GPT2 model. The sizes are *gpt2*, *gpt2-medium*, *gpt2-large*, *gpt2-xl*. Some of these may be too big for your computer to train.
 
 Here are some less important but still interesting parameters:
 
-* *overwrite_output_dir* determines whether to overwrite any existing NN in the *output_dir*
-* *block_size* is the length of text samples the NN will train on.
+* *overwrite_output_dir* determines whether to overwrite any existing NN in the * *output_dir* is where the fine-tuned network will be stored
+* *block_size* is the length of text samples the network will train on.
 * *gradient_accumulation_steps* can be increased to make the memory usage a little more efficient
 * *no_cuda* forces the training procedure to not use CUDA (i.e. not to use your GPUs). I have to use this because my GPU is not big enough for training most GPT2 networks.
 
@@ -66,9 +61,7 @@ Once you've verified your parameters are acceptable, simply run the *train.py* f
 
 The two simulation files are *generate_from_prompt.py* and *simulate_conversation.py*.
 
-Before you run these, ensure the *generation_config.json* is properly configured. Particularly, *model_name_or_path* must be the folder of the desired NN. For example, if the folder is "Steven" and it's located in the same location as *generate_from_prompt.py* and *simulate_conversation.py*, you would enter *Steven/*
-
-you do not need to change the *model_type* parameter, regardless of which GPT2 size you use.
+Before you run these, ensure the generation section of *config.yaml* is properly configured. Particularly, *model_name* must be the folder of the desired NN. For example, if the folder is "TrainedModel" and it's located in the same location as *generate_from_prompt.py* and *simulate_conversation.py*, you would enter *TrainedModel/*
 
 I recommend researching and experimenting with *temperature*, *repetition_penalty* and *k*. These parameters can affect the quality of the outputs. The defaults are what I found to be effective.
 
