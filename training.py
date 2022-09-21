@@ -32,8 +32,14 @@ def fine_tune_gpt2(model_name='gpt2-large',
     ############################
     # LOAD MODEL AND TOKENIZER #
     ############################
-    pt_model = GPT2LMHeadModel.from_pretrained(model_name)
-    tokenizer = AutoTokenizer.from_pretrained(model_name, max_length=block_size, padding=True, truncate=True)
+    if os.path.isdir(output_dir):
+        print("Loading existing model...")
+        pt_model = GPT2LMHeadModel.from_pretrained("./"+output_dir)
+        tokenizer = AutoTokenizer.from_pretrained("./"+output_dir, max_length=block_size, padding=True, truncate=True)
+    else:
+        print("Creating new model...")
+        pt_model = GPT2LMHeadModel.from_pretrained(model_name)
+        tokenizer = AutoTokenizer.from_pretrained(model_name, max_length=block_size, padding=True, truncate=True)
     special_tokens = []
     with open(usernames_dir) as usernames_file:
         usernames_reader = csv.reader(usernames_file, quotechar='"', delimiter=',', quoting=csv.QUOTE_ALL)
