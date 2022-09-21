@@ -1,4 +1,4 @@
-torch==1.9.0
-dataclasses==0.8
-PyYAML==5.4.1
-transformers==4.10.3
+torch
+dataclasses
+PyYAML
+transformers
