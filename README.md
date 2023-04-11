@@ -1,3 +1,13 @@
+# Deprecation Notice
+
+With the recent innovations in small LLMs such as [LLaMa](https://ai.facebook.com/blog/large-language-model-llama-meta-ai/), fine-tuning GPT2 has become somewhat irrelevant. Additionally, Discord has made some substantial changes to their formatting (the introduction of threads was a big one) that I have not had the time to keep up with.
+
+Thus, I'm sunsetting this project. Maybe in the future I'll create a pipeline for generating LLaMa-friendly training data from Discord logs, but GPT2 is probably out of the picture.
+
+Thanks to everyone who took interest in this project! I really appreciate it.
+
+tldr: Be warned, this code is no longer maintained, and its functionality is not guaranteed.
+
 # Overview
 
 Have your friends ever been offline when you really wanted to chat? Have you ever felt irresponsible for not having a backup of your friends? Do you believe that piracy isn't theft?
